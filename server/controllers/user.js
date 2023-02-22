@@ -50,19 +50,6 @@ exports.signup = (req, res, next) => {
 };
 
 exports.login = (req, res, next) => {
-	//   const user = await User.findOne({ where : {email : req.body.email }});
-	//  if(user){
-	//     const password_valid = await bcrypt.compare(req.body.password,user.password);
-	//     if(password_valid){
-	//         token = jwt.sign({ "email" : user.email },process.env.TOKEN);
-	//         res.status(200).json({ token : process.env.TOKEN });
-	//     } else {
-	//       res.status(400).json({ error : "Password Incorrect" });
-	//     }
-
-	//   }else{
-	//     res.status(404).json({ error : "User does not exist" });
-	//   }
 	User.findOne({where: {email: req.body.email}})
 		.then((user) => {
 			if (!user) {
@@ -70,7 +57,6 @@ exports.login = (req, res, next) => {
 					error: new Error("User not found!"),
 				});
 			}
-			console.log("abd", user.isAdmin);
 			bcrypt
 				.compare(req.body.password, user.password)
 				.then((valid) => {
