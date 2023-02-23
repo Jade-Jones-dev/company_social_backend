@@ -1,12 +1,17 @@
 const db = require("../models/database");
+const message = require("../models/message");
 const Message = db.messages;
 const Op = db.Sequelize.Op;
-
-
 
 // Update a message by the id in the request- check if the user created the message or is admin
 exports.update = (req, res) => {
 	const id = req.params.id;
+
+	// check if this is on db
+	if(message.userId !== req.auth.userId){
+		res.status(403).json({message: "Unauthorised"})
+		return;
+	}
 
 	Message.update(req.body, {
 		where: {id: id},
@@ -66,6 +71,8 @@ exports.delete = (req, res, next) => {
 
 	Message.findOne({id: req.params.id})
 		.then((message) => {
+
+			// not on databasede
 			if(message.userId !== req.auth.userId){
 				res.status(403).json({message: "Unauthorised"})
 				return;
