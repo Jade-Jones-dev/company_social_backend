@@ -17,7 +17,4 @@ router.put("/:id", messageCtrl.update);
 // Delete a message with id
 router.delete("/:id", messageCtrl.delete);
 
-// Delete all messages
-router.delete("/", messageCtrl.deleteAll);
-
 module.exports= router;

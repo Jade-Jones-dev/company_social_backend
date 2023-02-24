@@ -85,21 +85,6 @@ exports.delete = (req, res, next) => {
 		.catch((error) => res.status(400).json({error}))
   }
 
-// Delete all Message from the database- need to add admin to this
-exports.deleteAll = (req, res) => {
-	Message.destroy({
-		where: {},
-		truncate: false,
-	})
-		.then((nums) => {
-			res.send({message: `${nums} Messages were deleted successfully!`});
-		})
-		.catch((err) => {
-			res.status(500).send({
-				message: err.message || "An error occurred while removing all messages.",
-			});
-		});
-};
 
 // Completed- Create a new Message
 exports.create = (req, res) => {
@@ -120,6 +105,7 @@ exports.create = (req, res) => {
 	const message = {
 		title: req.body.title,
 		body: req.body.body,
+		user_id: req.auth.userId
 	};
 
 	Message.create(message)
