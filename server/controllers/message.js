@@ -3,13 +3,12 @@ const message = require("../models/message");
 const Message = db.messages;
 const Op = db.Sequelize.Op;
 
-// Update a message by the id in the request- check if the user created the message or is admin
+// Completed Update a message by the id in the request-
 exports.update = (req, res) => {
 	const id = req.params.id;
 
-	// check if this is on db
-	if(message.userId !== req.auth.userId){
-		res.status(403).json({message: "Unauthorised"})
+	if (message.userId !== req.auth.userId || req.auth.isAdmin !== true) {
+		res.status(403).json({message: "Unauthorised"});
 		return;
 	}
 
@@ -42,8 +41,7 @@ exports.update = (req, res) => {
 // 				res.status(403).json({message: "Unauthorised"})
 // 				return;
 // 			}
-			
-	
+
 // 	const id = req.params.id;
 
 // 	Message.destroy({
@@ -68,23 +66,19 @@ exports.update = (req, res) => {
 // };
 
 exports.delete = (req, res, next) => {
-
 	Message.findOne({id: req.params.id})
 		.then((message) => {
-
-			// not on databasede
-			if(message.userId !== req.auth.userId){
-				res.status(403).json({message: "Unauthorised"})
+			if (message.userId !== req.auth.userId || req.auth.isAdmin !== true) {
+				res.status(403).json({message: "Unauthorised"});
 				return;
 			}
-			
-			Message.destroy({where: {id: req.params.id}})
-			.then(() => res.status(200).json({message: 'Message has been deleted'}))
-			.catch((error) => res.status(400).json({error}))
-		})
-		.catch((error) => res.status(400).json({error}))
-  }
 
+			Message.destroy({where: {id: req.params.id}})
+				.then(() => res.status(200).json({message: "Message has been deleted"}))
+				.catch((error) => res.status(400).json({error}));
+		})
+		.catch((error) => res.status(400).json({error}));
+};
 
 // Completed- Create a new Message
 exports.create = (req, res) => {
@@ -105,7 +99,7 @@ exports.create = (req, res) => {
 	const message = {
 		title: req.body.title,
 		body: req.body.body,
-		user_id: req.auth.userId
+		user_id: req.auth.userId,
 	};
 
 	Message.create(message)
