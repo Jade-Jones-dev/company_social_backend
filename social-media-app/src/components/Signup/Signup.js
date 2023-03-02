@@ -33,6 +33,7 @@ const Signup = () => {
         setName("");
         setPassword("");
         setEmail("");
+        setConfirmPassword("")
       };
 
 	return (

@@ -1,6 +1,8 @@
 nav {
     display: flex;
     justify-content: space-between;
+    padding:20px;
+   
   }
   
   ul {
@@ -8,15 +10,18 @@ nav {
     list-style: none;
     margin: 0;
     padding: 0;
+  
     
   }
   
   li {
     margin: 0 10px;
-    text-decoration: none;
+   
   }
   
   .active {
     font-weight: bold;
   }
+
+  
   

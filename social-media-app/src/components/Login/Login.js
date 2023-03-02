@@ -12,8 +12,6 @@ const Login = () => {
   const handleSubmit =  (e) => {
     e.preventDefault();
 
-
-
     fetch('http://127.0.0.1:8080/api/auth/login', {
       method: "post",
       headers: {
@@ -24,9 +22,7 @@ const Login = () => {
     .then((res) => res.json())
     .then((data) => console.log(data))
     .catch((error) => console.log(error))
-  
- 
-   
+     
     setPassword("");
     setEmail("");
     navigate("/dashboard")

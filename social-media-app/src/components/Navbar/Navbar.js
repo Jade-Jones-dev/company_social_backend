@@ -7,17 +7,17 @@ const NavBar = () => {
     <nav>
       <ul>
         <li>
-          <NavLink exact to="/" activeClassName="active">
+          <NavLink exact to="/" activeClassName="active" style={{textDecoration: 'none'}}>
             Home
           </NavLink>
         </li>
         <li>
-          <NavLink to="/signup" activeClassName="active">
+          <NavLink to="/signup" activeClassName="active" style={{textDecoration: 'none'}}>
             Sign Up
           </NavLink>
         </li>
         <li>
-          <NavLink to="/login" activeClassName="active">
+          <NavLink to="/login" activeClassName="active" style={{textDecoration: 'none'}}>
             Login
           </NavLink>
         </li>
