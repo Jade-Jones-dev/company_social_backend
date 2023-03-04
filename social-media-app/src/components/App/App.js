@@ -3,7 +3,7 @@ import{BrowserRouter, Route, Routes} from 'react-router-dom';
 import Dashboard from '../Dashboard/Dashboard';
 import Login from '../Login/Login'
 import Home from '../Home/Home'
-import Navbar from "../Navbar/Navbar";
+import Header from '../Header/Header';
 import Signup from "../Signup/Signup";
 
 import './App.css';
@@ -13,7 +13,7 @@ function App() {
   return (
     <div className='wrapper'>
       <BrowserRouter>
-      <Navbar/>
+      <Header/>
       <Routes>
       <Route exact path="/" element={<Home/>} />
       <Route path="/signup" element={<Signup/>}/>
