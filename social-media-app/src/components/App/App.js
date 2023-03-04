@@ -5,13 +5,15 @@ import Login from '../Login/Login'
 import Home from '../Home/Home'
 import Header from '../Header/Header';
 import Signup from "../Signup/Signup";
+import Footer from '../Footer/Footer';
 
 import './App.css';
 
 function App() {
   
   return (
-    <div className='wrapper'>
+    
+    <div classname='App'>
       <BrowserRouter>
       <Header/>
       <Routes>
@@ -20,6 +22,7 @@ function App() {
       <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
+      <Footer/>
       </BrowserRouter>
     </div>
   );
