@@ -1,8 +1,8 @@
 nav {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     color:white;
-    background-color: black;
+    background-color: #091f43;
    
   }
   
