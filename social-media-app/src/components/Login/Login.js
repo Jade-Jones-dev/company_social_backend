@@ -36,12 +36,11 @@ const Login = () => {
 				}
 			})
 			.then((data) => {
-		
 					localStorage.setItem("token", data.token);
 					localStorage.setItem("userId", data.userId);
 					localStorage.setItem("isAdmin", data.isAdmin);
 					localStorage.setItem("name", data.name);
-					navigate("/dashboard");
+					window.location.href="/dashboard";
 					setPassword("");
 					setEmail("");
 					setErrorMessage("");

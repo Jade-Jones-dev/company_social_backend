@@ -13,7 +13,7 @@ function App() {
   
   return (
     
-    <div classname='App'>
+    <div className='App'>
       <BrowserRouter>
       <Header/>
       <Routes>
