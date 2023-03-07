@@ -41,7 +41,6 @@ const Login = () => {
 					localStorage.setItem("userId", data.userId);
 					localStorage.setItem("isAdmin", data.isAdmin);
 					localStorage.setItem("name", data.name);
-					console.log(data.token, data.userId, data.isAdmin, data.name);
 					navigate("/dashboard");
 					setPassword("");
 					setEmail("");
