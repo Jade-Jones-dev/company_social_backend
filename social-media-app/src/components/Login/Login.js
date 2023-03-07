@@ -9,14 +9,14 @@ const Login = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [errorMessage, setErrorMessage] = useState("");
-	const [isMounted, setIsMounted] = useState(false);
+	// const [isMounted, setIsMounted] = useState(false);
 
-	useEffect(() => {
-		setIsMounted(true);
-		return () => {
-			setIsMounted(false);
-		};
-	}, []);
+	// useEffect(() => {
+	// 	setIsMounted(true);
+	// 	return () => {
+	// 		setIsMounted(false);
+	// 	};
+	// }, []);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -36,17 +36,17 @@ const Login = () => {
 				}
 			})
 			.then((data) => {
-				if (isMounted) {
+		
 					localStorage.setItem("token", data.token);
 					localStorage.setItem("userId", data.userId);
 					localStorage.setItem("isAdmin", data.isAdmin);
 					localStorage.setItem("name", data.name);
-					console.log(data.token, data.userId, data.isVolunteer, data.name);
+					console.log(data.token, data.userId, data.isAdmin, data.name);
 					navigate("/dashboard");
 					setPassword("");
 					setEmail("");
 					setErrorMessage("");
-				}
+	
 			})
 			.catch((error) => {
 				console.log(error);
