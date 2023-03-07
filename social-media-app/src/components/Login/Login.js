@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 import background from './download.jpeg'
 
@@ -9,6 +9,14 @@ const Login = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [errorMessage, setErrorMessage] = useState("");
+	const [isMounted, setIsMounted] = useState(false);
+
+	useEffect(() => {
+		setIsMounted(true);
+		return () => {
+			setIsMounted(false);
+		};
+	}, []);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -28,12 +36,17 @@ const Login = () => {
 				}
 			})
 			.then((data) => {
-				localStorage.setItem("token", data.token, "userId", data.userId, "isAdmin", data.isAdmin);
-				console.log(data.token, data.userId, data.isAdmin);
-				navigate("/dashboard");
-				setPassword("");
-				setEmail("");
-				setErrorMessage("");
+				if (isMounted) {
+					localStorage.setItem("token", data.token);
+					localStorage.setItem("userId", data.userId);
+					localStorage.setItem("isAdmin", data.isAdmin);
+					localStorage.setItem("name", data.name);
+					console.log(data.token, data.userId, data.isVolunteer, data.name);
+					navigate("/dashboard");
+					setPassword("");
+					setEmail("");
+					setErrorMessage("");
+				}
 			})
 			.catch((error) => {
 				console.log(error);
