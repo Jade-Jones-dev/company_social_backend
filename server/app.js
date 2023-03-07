@@ -26,11 +26,6 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-app.use('/login', (req, res) => {
-	res.send({
-	  token: 'test123'
-	});
-  });
 
 app.use("/api/auth", userRoutes);
 app.use("/api/messages", messageRoutes);

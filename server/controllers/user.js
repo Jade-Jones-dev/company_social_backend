@@ -3,6 +3,7 @@ const User = db.users;
 const Op = db.Sequelize.Op;
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const auth = require('../middleware/auth');
 
 const passwordValidator = require("password-validator");
 let schema = new passwordValidator();
@@ -41,13 +42,21 @@ exports.signup = (req, res, next) => {
 			const user = {email: req.body.email, password: hash, name: req.body.name};
 			User.create(user)
 				.then((data) => {
-					res.send({message: "Your account has been created"});
+					const jwtData = {id:user.id, name: user.name, isAdmin: user.isAdmin}
+					const token =jwt.sign(jwtData, process.env.TOKEN)
+					res.send(token);
 				})
 				.catch((error) => res.status(400).json({error}))
 				.catch((error) => res.status(500).json({error}));
 		});
 	}
 };
+
+exports.log =  async (req, res, next) => {
+  const user = User.findOne({where:{email: req.body.email}})
+  res.send(user)
+  
+}
 
 exports.login = (req, res, next) => {
 	User.findOne({where: {email: req.body.email}})
@@ -60,20 +69,14 @@ exports.login = (req, res, next) => {
 			bcrypt
 				.compare(req.body.password, user.password)
 				.then((valid) => {
-					console.log("hello", valid);
 					if (!valid) {
 						return res.status(401).json({
 							error: new Error("Incorrect password!"),
 						});
 					}
-					const token = jwt.sign({userId: user.id, isAdmin: user.isAdmin}, process.env.token, {expiresIn: "24h"});
-					console.log("token", token);
-					res.status(200).json({
-						userId: user.id,
-						token: token,
-						isAdmin: user.isAdmin,
-						name: user.name
-					});
+					const jwtData = {id:user.id, name: user.name, isAdmin: user.isAdmin}
+					const token =jwt.sign(jwtData, process.env.TOKEN)
+					res.send(token);
 				})
 				.catch((error) => {
 					res.status(500).json({
