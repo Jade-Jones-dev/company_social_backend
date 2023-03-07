@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import background from './download.jpeg'
 
 import "./Login.css";
 
@@ -41,22 +42,26 @@ const Login = () => {
 	};
 
 	return (
+		<div className="maindiv" style={{ backgroundImage:`url(${background})`,backgroundRepeat:"no-repeat",backgroundSize:"cover"}}>
 		<div className='login-wrapper'>
-			<form onSubmit={handleSubmit}>
-				<label>
-					<p>Email</p>
-					<input type='email' value={email} onChange={(event) => setEmail(event.target.value)} />
-				</label>
-				<label>
-					<p>Password</p>
-					<input type='password' value={password} onChange={(event) => setPassword(event.target.value)} />
-				</label>
-				{errorMessage && <p className='error'>{errorMessage}</p>}
-				<div>
-					<button type='submit'>Log in</button>
-				</div>
-			</form>
+		<form onSubmit={handleSubmit}>
+			<h1>Login</h1>
+			<label>
+				<p>Email</p>
+				<input type='email' value={email} onChange={(event) => setEmail(event.target.value)} />
+			</label>
+			<label>
+				<p>Password</p>
+				<input type='password' value={password} onChange={(event) => setPassword(event.target.value)} />
+			</label>
+			{errorMessage && <p className='error'>{errorMessage}</p>}
+			<div>
+				<button className='btn' type='submit'>Log in</button>
+			</div>
+		</form>
+	</div>
 		</div>
+		
 	);
 };
 
