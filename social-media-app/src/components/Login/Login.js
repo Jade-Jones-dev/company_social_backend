@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {useNavigate} from "react-router-dom";
-import background from './download.jpeg'
+import background from './background.jpg'
 
 import "./Login.css";
 

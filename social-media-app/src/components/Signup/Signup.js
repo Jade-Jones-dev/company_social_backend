@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import background from '../Login/background.jpg'
 import "./Signup.css";
 
-import background from './Abstract_blue_dark_background_02_generated.jpg'
+// import background from './Abstract_blue_dark_background_02_generated.jpg'
 
 const Signup = () => {
 	const navigate = useNavigate();
@@ -41,7 +42,7 @@ const Signup = () => {
       };
 
 	return (
-		<div className='maindiv' style={{ backgroundImage:`url(${background})`,backgroundRepeat:"no-repeat",backgroundSize:"fill" }}>
+		<div className='maindiv' style={{ backgroundImage:`url(${background})`,backgroundRepeat:"no-repeat",backgroundSize:"cover" }}>
 			
 			<div className='signup-wrapper'>
 			<h1>Please sign up</h1>
