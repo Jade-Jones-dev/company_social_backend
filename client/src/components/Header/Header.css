@@ -1,0 +1,16 @@
+.header_wrapper{
+    display:flex;
+    justify-content: space-between;
+    color:white;
+    background-color: #091f43;
+    height:100px;
+    align-items: center;
+    margin:auto;
+    border-bottom: #d1515a solid 4px;
+    
+}
+
+img{
+    width:200px;
+    padding:10px
+}

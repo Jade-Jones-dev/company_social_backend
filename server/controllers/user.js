@@ -52,7 +52,7 @@ exports.signup = (req, res, next) => {
 	}
 };
 
-exports.log =  async (req, res, next) => {
+exports.log =  async (req, res) => {
   const user = User.findOne({where:{email: req.body.email}})
   res.send(user)
   
