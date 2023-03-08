@@ -42,9 +42,9 @@ exports.signup = (req, res, next) => {
 			const user = {email: req.body.email, password: hash, name: req.body.name};
 			User.create(user)
 				.then((data) => {
-					const jwtData = {id:user.id, name: user.name, isAdmin: user.isAdmin}
-					const token =jwt.sign(jwtData, process.env.TOKEN)
-					res.send(token);
+					// const jwtData = {id:user.id, name: user.name, isAdmin: user.isAdmin}
+					// const token =jwt.sign(jwtData, process.env.TOKEN)
+					res.send(data);
 				})
 				.catch((error) => res.status(400).json({error}))
 				.catch((error) => res.status(500).json({error}));
