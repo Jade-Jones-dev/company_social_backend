@@ -74,9 +74,14 @@ exports.login = (req, res, next) => {
 							error: new Error("Incorrect password!"),
 						});
 					}
-					const jwtData = {id:user.id, name: user.name, isAdmin: user.isAdmin}
-					const token =jwt.sign(jwtData, process.env.TOKEN)
-					res.send(token);
+					const token = jwt.sign({userId: user.id, isAdmin: user.isAdmin}, process.env.token, {expiresIn: "24h"});
+					console.log("token", token);
+					res.status(200).json({
+						userId: user.id,
+						token: token,
+						isAdmin: user.isAdmin,
+						name: user.name
+					});
 				})
 				.catch((error) => {
 					res.status(500).json({
